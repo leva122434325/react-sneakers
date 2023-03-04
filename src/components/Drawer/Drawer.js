@@ -1,37 +1,39 @@
+import styles from "./Drawer.module.scss"
+
 export function Drawer() {
     return(
         <div style={{display:'none'}} className="overlay">
-      <div className="drawer">
-        <h2 className="mb-30 d-flex justify-between ">Корзина <img className="crossBtn cu-p" src="/img/cross.svg" alt="cross" /></h2>
+      <div className={styles.drawer}>
+        <h2 className="mb-30 d-flex justify-between ">Корзина <img className={styles.crossBtn } src="/img/cross.svg" alt="cross" /></h2>
 
-        <div className="item">
-        <div className="basket-cart ">
+        <div className={styles.item}>
+        <div className={styles.basketCart}>
           <div className="d-flex align-center">
             <img src="/img/basket-sneak.jpg" alt="sneak" />
 
-            <div className="basket-text">
+            <div className={styles.basketText}>
               <p>Мужские Кроссовки Nike Air Max 270</p>
               <b>12 999 руб.</b>
             </div>
 
-            <img className="crossBtn" src="/img/cross.svg" alt="cross" />
+            <img className={styles.crossBtn} src="/img/cross.svg" alt="cross" />
           </div>
         </div>
-        <div className="basket-cart ">
+        <div className={styles.basketCart}>
           <div className="d-flex align-center">
             <img src="/img/basket-sneak.jpg" alt="sneak" />
 
-            <div className="basket-text">
+            <div className={styles.basketText}>
               <p>Мужские Кроссовки Nike Air Max 270</p>
               <b>12 999 руб.</b>
             </div>
 
-            <img className="crossBtn" src="/img/cross.svg" alt="cross" />
+            <img className={styles.crossBtn} src="/img/cross.svg" alt="cross" />
           </div>
         </div>
         </div>
 
-        <ul className="cartTotalBlock">
+        <ul className={styles.cartTotalBlock}>
           <li className="d-flex align-end">
             <span>Итого:</span>
             <div></div>
@@ -44,7 +46,7 @@ export function Drawer() {
           </li>
         </ul>
 
-        <button  className="cartBtn">Оформить заказ <img src="/img/rightSide.svg" alt="" /></button>
+        <button  className={styles.cartBtn}>Оформить заказ <img src="/img/rightSide.svg" alt="rightSide" /></button>
       </div>
     </div>
     )
