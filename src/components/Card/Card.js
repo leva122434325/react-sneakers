@@ -1,39 +1,43 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styles from "./Card.module.scss"
 
-console.log(styles);
 
+ export function Card ({imgUrl,title,price, onPlus,onFavorite})  {
 
+    const [toggle,setToggle] = useState(false)
+    const [isfavorite,setFavorite] = useState(false)
 
- export function Card (props)  {
-
-    const [toggle,setToggle] = React.useState(true)
-
-    const onClickButton = () => {
-      setToggle(false)
+    const onClickPlus = () => {
+      onPlus({imgUrl,title,price})
+      setToggle(!toggle)
     }
+
+    const onClickFavorite = () => {
+      onFavorite()
+      setFavorite(!isfavorite)
+    }
+
 
     return(
             <div className={styles.card}>
-            <div className={styles.favorite}>
-              <img src="/img/empty.svg" alt="empty" />
+            <div className={styles.favorite} >
+              <img onClick={onClickFavorite} 
+              src={ isfavorite ? "/img/full.svg" :"/img/empty.svg" }
+              alt="empty" />
             </div>
-            <img width={133} height={112} src={props.imgUrl} alt="s" />
-            <p>{props.title}</p>
+            <img width={133} height={112} src={imgUrl} alt="s" />
+            <p>{title}</p>
 
             <div className="d-flex justify-between  align-center">
               <div className="d-flex flex-column">
                 <span>ЦЕНА:</span>
-                <b>{props.price}.</b>
+                <b>{price}.</b>
               </div>
-
-              {toggle ? <button onClick={onClickButton} >
-                <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-                </button>
-                : <button onClick={onClickButton} >
-                <img width={32} height={32} src="/img/complete.svg" alt="plus" />
-                </button>  }
-
+              <img className="cu-p"
+               onClick={onClickPlus}
+               src={toggle ? "/img/complete.svg" :  "/img/plus.svg"} 
+               alt="plus" /> 
+                  
             </div>
           </div>
         
