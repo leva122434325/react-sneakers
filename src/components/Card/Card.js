@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 import styles from "./Card.module.scss"
 
 
- export function Card ({imgUrl,title,price, onPlus,onFavorite})  {
+ export function Card ({imgUrl,title,price, onPlus, onFavorite, favorited = false})  {
 
     const [toggle,setToggle] = useState(false)
-    const [isfavorite,setFavorite] = useState(false)
+    const [isfavorite,setFavorite] = useState(favorited)
 
     const onClickPlus = () => {
       onPlus({imgUrl,title,price})
@@ -13,7 +13,7 @@ import styles from "./Card.module.scss"
     }
 
     const onClickFavorite = () => {
-      onFavorite()
+      onFavorite({imgUrl,title,price})
       setFavorite(!isfavorite)
     }
 

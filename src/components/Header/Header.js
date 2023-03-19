@@ -1,10 +1,11 @@
 import styles from "./Header.module.scss"
+import { Link } from 'react-router-dom'
 
 export function Header (props) {
     return(
         <header>
       <div className={styles.headerLeft}>
-          <img width={40} height={40} src="/img/logo.png" />
+          <Link to="/"><img width={40} height={40} src="/img/logo.png" /></Link>
           <div className="headerInfo">
             <h3 >REACT SNEAKERS</h3>
             <p>Магазин лучших кроссовок</p>
@@ -17,8 +18,9 @@ export function Header (props) {
             <p>1205 руб.</p>
           </li>
           <li>
+            <Link to='/favorites'>
             <img className={styles.headerHeart} 
-              width={20} height={20} src="/img/heart.png" />
+              width={20} height={20} src="/img/heart.png" /></Link>
             <img className="cu-p" width={20} height={20} src="/img/user.png" />
           </li>
         </ul>

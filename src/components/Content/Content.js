@@ -3,16 +3,11 @@ import { Card } from "../Card/Card";
 import styles from "./Content.module.scss"
 
 
-
-
 export function Content(props) {
   const [searchValue, setsearchValue] = useState('')
 
 
-  
-
   const onChangeSearchInput = (event) => {
-    console.log(event.target.value);
     setsearchValue(event.target.value)
   }
 
@@ -30,18 +25,11 @@ export function Content(props) {
         {props.items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map(item => (
           <Card
             key={item.title}
-            title={item.title}
-            price={item.price}
-            imgUrl={item.imgUrl}
-            onFavorite={() => console.log("нажали")}
+            {...item}
+            onFavorite={(obj) => props.onAddToFavorite(obj)}
             onPlus={(obj) => props.onAddToCart(obj)} />
-
         ))}
       </div>
-
-
-
-
     </div>
   )
 }
