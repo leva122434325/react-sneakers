@@ -3,12 +3,29 @@ import { Card } from "../Card/Card";
 import styles from "./Content.module.scss"
 
 
-export function Content(props) {
+export function Content({isLoading, ...props}) {
   const [searchValue, setsearchValue] = useState('')
+  console.log(isLoading);
 
 
   const onChangeSearchInput = (event) => {
     setsearchValue(event.target.value)
+  }
+
+  const renderItems = () => {
+    const filtredItems = props.items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    
+    return (isLoading 
+    ? Array(8).fill(<Card  loading={isLoading}/>)
+    : filtredItems.map(item => (
+      <Card
+        key={item.title}
+        {...item}
+        onFavorite={(obj) => props.onAddToFavorite(obj)}
+        onPlus={(obj) => props.onAddToCart(obj)}
+        added={props.cartItems.some(obj => Number(obj.id) === Number(item.id))}
+        loading={isLoading} /> )) 
+    )
   }
 
   return (
@@ -22,13 +39,7 @@ export function Content(props) {
       </div>
 
       <div className="d-flex flex-wrap">
-        {props.items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map(item => (
-          <Card
-            key={item.title}
-            {...item}
-            onFavorite={(obj) => props.onAddToFavorite(obj)}
-            onPlus={(obj) => props.onAddToCart(obj)} />
-        ))}
+        {renderItems()}
       </div>
     </div>
   )
